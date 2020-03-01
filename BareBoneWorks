@@ -1,0 +1,26 @@
+int PinIn = A3;
+int Inval = 0;
+
+int Dutyval = 0;
+int Freqval = 0;
+
+int ESCpin = 5;
+
+void setup() {
+
+  pinMode(5, OUTPUT); // drive esc
+
+}
+
+void loop() {
+
+
+  Inval = analogRead(PinIn);  // read the input pin
+  Dutyval = map(Inval, 0, 1023, 5000, 19000);
+
+  digitalWrite(ESCpin, HIGH);
+  delayMicroseconds(Dutyval);
+  digitalWrite(ESCpin, LOW);
+  delay(70);
+
+}
