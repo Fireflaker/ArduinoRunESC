@@ -1,0 +1,36 @@
+
+int FreqPin = A1;
+int DutyPin = A2;
+int SecondDutyPin = A3;
+int val = 0;  
+int Secondval = 0;  
+int PWMoutPin = 10;
+int PWMReversePin = 11;
+int SecondPWMoutPin = 9;          
+int pinToToggle = 8;
+int brightness = 0;    // how bright the LED is
+int fadeAmount = 5;    // how many points to fade the LED by
+int PWMval = 0;
+int SecondPWMval = 0;
+
+void setup() {
+
+}
+
+
+void loop() {
+
+  
+  digitalWrite(pinToToggle, HIGH);
+  
+  val = analogRead(DutyPin);  // read the input pin
+  Secondval = analogRead(SecondDutyPin);  // read the input pin
+  PWMval = map(val, 0, 1023, 0, 255);
+  SecondPWMval = map(Secondval, 0, 1023, 0, 180);
+  analogWrite(PWMoutPin, PWMval);
+  analogWrite(PWMReversePin, 255 - PWMval);
+  analogWrite(SecondPWMoutPin, SecondPWMval);
+
+ digitalWrite(pinToToggle, LOW);
+ 
+}
